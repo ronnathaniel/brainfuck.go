@@ -1,8 +1,42 @@
 # brainfuck.go
 
+### Description
 
 [BrainFuck](https://en.wikipedia.org/wiki/Brainfuck) interpreter written in [golang](https://github.com/golang/go).
 
+
+##
+### Table of Contents
+- [Description](#Description)
+- [Installation](#Installation)
+- [Usage](#Usage)
+- [License](#License)
+- [Copyright](#Copyright)
+##
+
+
+### Installation
+
+Build from source
+
+    #! sh
+    
+    go get -u github.com/ronnathaniel/brainfuck.go
+    cd ~/go/src/ronnathaniel/brainfuck.go
+    go build .
+    mv brainfuck.go /usr/local/bin/brainfuck
+
+### Usage
+
+BrainFuck source files *should* end with extensions `.b` or `.bf` .
+
+Run the `brainfuck` executable, pass in BF source files as args:
+
+    brainfuck hello.bf
+    
+creates a `hello` compiled executable. Run the executable to compute your BF logic.
+
+    ./hello 
 
 ### License
 
