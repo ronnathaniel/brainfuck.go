@@ -2,7 +2,7 @@
 
 ### Description
 
-[BrainFuck](https://en.wikipedia.org/wiki/Brainfuck) interpreter written in [golang](https://github.com/golang/go).
+[BrainFuck](https://en.wikipedia.org/wiki/Brainfuck) compiler written in [golang](https://github.com/golang/go).
 
 
 ##
@@ -34,7 +34,7 @@ Run the `brainfuck` executable, pass in BF source files as args:
 
     brainfuck hello.bf
     
-creates a `hello` compiled executable. Run the executable to compute your BF logic.
+creates a `hello` compiled and optimized executable. Run the executable to compute your BF logic.
 
     ./hello 
 
