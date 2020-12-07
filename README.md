@@ -22,15 +22,15 @@ Build from source
     #! sh
     
     go get -u github.com/ronnathaniel/brainfuck.go
-    cd ~/go/src/ronnathaniel/brainfuck.go
+    cd ~/go/src/github.com/ronnathaniel/brainfuck.go
     go build .
     mv brainfuck.go /usr/local/bin/brainfuck
 
 ### Usage
 
-BrainFuck source files *should* end with extensions `.b` or `.bf` .
+BrainFuck source files *should* end with extensions `.b` or `.bf` 
 
-Run the `brainfuck` executable, pass in BF source files as args:
+Run `brainfuck`, pass in BF source files as args:
 
     brainfuck hello.bf
     
@@ -45,3 +45,5 @@ This project is provided by the MIT license.
 ### Copyright
 
 samo c 20
+
+![S4M0](https://www.juxtapoz.com/images/Austin%20McManus/April_2013/9/jux_samo.jpg)
