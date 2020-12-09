@@ -15,11 +15,13 @@
 ##
 
 
+
+
 ### Installation
 
 Get this module
 
-    go get -u github.com/ronnathaniel/brainfuck.go
+    go get -u github.com/ronnathaniel/brainfuck.go/
 
 Build executable from source
 
@@ -39,11 +41,14 @@ The function has a signature of
     
 allowing it to be called from anywhere.
 
-    import bf "github.com/ronnathaniel/brainfuck.go"
+    import "github.com/ronnathaniel/brainfuck.go/brainfuck"
     
-    var brainfuckRaw string = ">++++[+>+++>>+<<<-]"
-    bf.Exec(brainfuckRaw)
+    brainfuck.Exec(">++++[+>+++>>+<<<-]")
     
+Open source files with a supplied `OpenFile` function. Pass it a relative string path.
+
+    bfRaw := brainfuck.OpenFile("<PATH/TO/SRC>")
+    brainfuck.Exec(bfRaw)
 
 On the command line side, this compiler can be stored as a quasi-executable, like `gcc`.
 
@@ -68,6 +73,16 @@ Enable debugging logs by setting the `DEBUG` flag.
 The default tap size is set to 500. Override it with the `TAPE_SIZE_DEFAULT` flag.
 
     bf.TAPE_SIZE_DEFAULT = <NEW-SIZE: uint32>
+    
+### Structure
+
+    .
+    ├── LICENSE
+    ├── README.md
+    ├── brainfuck   - importable package
+    ├── cmd.go      - handles command line
+    └── examples    - example bf src
+
 
 ### Contributions Welcomed :)
 
