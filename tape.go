@@ -5,7 +5,7 @@ import "fmt"
 
 /* tape allows for a mapping/understanding of the current landscape */
 type tape struct {
-	cells 	[LAYOUT_LEN_DEFAULT]uint8
+	cells 	[TAPE_SIZE_DEFAULT]uint8
 	loops	[]uint32
 	stdout	string
 	pointer	uint32
@@ -26,7 +26,7 @@ type operational interface {
 /* layout default initializer */
 func NewTape() *tape {
 	return &tape{
-		cells:		[LAYOUT_LEN_DEFAULT]uint8{},
+		cells:		[TAPE_SIZE_DEFAULT]uint8{},
 		loops:		[]uint32{},
 		pointer: 	0,
 		windup:		0,
@@ -35,18 +35,17 @@ func NewTape() *tape {
 
 
 func (t *tape) do(op func() error) {
-	if err := op(); DEBUG && err != nil {
-		fmt.Println(err)
-	}
+	err := op()
+	check(err)
 	t.advanceWindup()
 }
 
 func (t *tape) shiftRight() error {
-	if t.pointer >= LAYOUT_LEN_DEFAULT - 1 {
+	if t.pointer >= TAPE_SIZE_DEFAULT - 1 {
 		return fmt.Errorf("inaccessible cell @ i=%d - Shift Right failed", t.pointer + 1)
 	}
 
-	//fmt.Println("shifting right")
+	log("shifting right")
 	t.plusplusPtr()
 	return nil
 }
@@ -56,7 +55,7 @@ func (t *tape) shiftLeft() error {
 		return fmt.Errorf("innacessible cell @ i=%d minus1 - Shift Left failed", t.pointer)
 	}
 
-	//fmt.Println("shifting left")
+	log("shifting left")
 	t.minusminusPtr()
 	return nil
 }
@@ -66,7 +65,7 @@ func (t *tape) increment() error {
 		return fmt.Errorf("unable to increment cell @ i=%d, cell_v=%d", t.pointer, t.getCell())
 	}
 
-	//fmt.Println("incrementing")
+	log("incrementing")
 	t.plusplusCell()
 	return nil
 }
@@ -76,7 +75,7 @@ func (t *tape) decrement() error {
 		return fmt.Errorf("unable to decrement cell @ i=%d, cell_v=%d", t.pointer, t.getCell())
 	}
 
-	//fmt.Println("decrementing")
+	log("decrementing")
 	t.minusminusCell()
 	return nil
 }
@@ -87,28 +86,26 @@ func (t *tape) inputByte() error {
 }
 
 func (t *tape) outputByte() error {
+	log("outputting", t.getCell())
 	t.stdout += fmt.Sprintf("%c", t.getCell())
 	return nil
 }
 
 func (t *tape) openLoop() error {
 	t.loops = append(t.loops, t.windup)
-	//fmt.Println("new loops:", t.loops)
+	log("loops:", t.loops)
 	return nil
 }
 
 func (t *tape) closeLoop() error {
 	if t.getCell() == 0 {
-		//fmt.Println("can safely leave this loops")
 		t.popLoop()
 		return nil
 	}
 
-	//t.pointer = t.peakLoop()
-	//t.resetWindup()
 	t.windup = t.peakLoop()
 
-	//fmt.Println("moving windup back to cell indx", t.windup)
+	log("moving windup back to cell @ index=", t.windup)
 	return nil
 }
 
