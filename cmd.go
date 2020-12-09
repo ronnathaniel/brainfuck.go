@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+
+	"github.com/ronnathaniel/brainfuck.go/brainfuck"
 )
 
 var (
@@ -16,7 +18,7 @@ func main() {
 	//parse(inputRaw)
 
 	inputRaw = parseArgs()
-	Exec(inputRaw)
+	brainfuck.Exec(inputRaw)
 }
 
 func parseArgs() string {
@@ -36,7 +38,9 @@ func parseArgs() string {
 
 func OpenFile(path string) string {
 	f, err := ioutil.ReadFile(path)
-	check(err)
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	return string(f)
 }
