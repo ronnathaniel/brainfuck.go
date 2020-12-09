@@ -1,6 +1,6 @@
 package main
 
 const (
-	LAYOUT_LEN_DEFAULT uint32 = 1000
+	TAPE_SIZE_DEFAULT uint32 = 500
 	DEBUG bool = false
 )
