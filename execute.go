@@ -6,10 +6,10 @@ import (
 	"strings"
 )
 
-func parse(inputRaw string) {
+func Exec(inputRaw string) {
 
 	t := NewTape()
-	var charToOp = map[string]func() error{
+	charToOp := map[string]func() error {
 		"+": t.increment,
 		"-": t.decrement,
 		">": t.shiftRight,
@@ -19,9 +19,8 @@ func parse(inputRaw string) {
 		".": t.outputByte,
 		",": t.inputByte,
 	}
-	//fmt.Println(inputRaw)
 
-	for t.windup < uint32(len(inputRaw)) {
+	for t.windup < uint32(len(inputRaw))  {
 		letter := string(inputRaw[t.windup])
 
 		if ! isValidToken(letter) {
@@ -38,4 +37,16 @@ func parse(inputRaw string) {
 
 func isValidToken(s string) bool {
 	return strings.Contains("+-><,[].,", s)
+}
+
+func log(s ...interface{}) {
+	if DEBUG {
+		fmt.Println("[BF DEBUG]", s)
+	}
+}
+
+func check(err error) {
+	if err != nil {
+		panic(err)
+	}
 }
