@@ -19,11 +19,11 @@
 
 ### Installation
 
-Get this module
+Pull this module.
 
-    go get -u github.com/ronnathaniel/brainfuck.go/
+    go get -u github.com/ronnathaniel/brainfuck.go
 
-Build executable from source
+Build executable from source.
 
     cd ~/go/src/github.com/ronnathaniel/brainfuck.go
     go build .
