@@ -14,8 +14,6 @@ var (
 )
 
 func main() {
-	//inputRaw = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++."
-	//parse(inputRaw)
 
 	inputRaw = parseArgs()
 	brainfuck.Exec(inputRaw)
