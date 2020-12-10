@@ -19,11 +19,11 @@
 
 ### Installation
 
-Pull this module.
+Pull this module
 
     go get -u github.com/ronnathaniel/brainfuck.go
 
-Build executable from source.
+Build executable from source
 
     cd ~/go/src/github.com/ronnathaniel/brainfuck.go
     go build .
@@ -47,17 +47,17 @@ allowing it to be called from anywhere.
     
 Open source files with a supplied `OpenFile` function. Pass it a relative string path.
 
-    bfRaw := brainfuck.OpenFile("<PATH/TO/SRC>")
-    brainfuck.Exec(bfRaw)
+    fuckRaw := brainfuck.OpenFile("<PATH/TO/SRC>.bf")
+    brainfuck.Exec(fuckRaw)
 
-On the command line side, this compiler can be stored as a quasi-executable, like `gcc`.
+On the command line side, this interpreter can be stored as a quasi-executable, like `gcc`.
 
 
 Run `brainfuck`, pass in BF source files as args. Source files *should* end with extensions `.b` or `.bf` 
 
     brainfuck hello.bf
     
-compiles and optimizes `hello.bf` before computing the logic. 
+interprets and optimizes `hello.bf` before computing the logic. 
 Input is retrieved from stdin and Output pushed to stdout.
 
 Optionally pass in a string from the command line.
@@ -68,20 +68,20 @@ Optionally pass in a string from the command line.
 
 Enable debugging logs by setting the `DEBUG` flag.
 
-    bf.DEBUG = true
+    brainfuck.DEBUG = true
     
 The default tap size is set to 500. Override it with the `TAPE_SIZE_DEFAULT` flag.
 
-    bf.TAPE_SIZE_DEFAULT = <NEW-SIZE: uint32>
+    brainfuck.TAPE_SIZE_DEFAULT = <NEW-SIZE: uint32>
     
 ### Structure
 
     .
     ├── LICENSE
     ├── README.md
-    ├── brainfuck   - importable package
-    ├── cmd.go      - handles command line
-    └── examples    - example bf src
+    ├── brainfuck/   - importable package
+    ├── cmd.go/      - handles command line
+    └── examples/    - example bf src
 
 
 ### Contributions Welcomed :)
