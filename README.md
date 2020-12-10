@@ -2,7 +2,7 @@
 
 ### Description
 
-[BrainFuck](https://en.wikipedia.org/wiki/Brainfuck) compiler written in [golang](https://github.com/golang/go).
+[BrainFuck](https://en.wikipedia.org/wiki/Brainfuck) interpreter written in [golang](https://github.com/golang/go).
 
 
 ##
