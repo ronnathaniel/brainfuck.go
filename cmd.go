@@ -20,25 +20,27 @@ func main() {
 }
 
 func parseArgs() string {
-	fmt.Println(os.Args)
+	brainfuck.Log("RAW ARGS - ", os.Args)
+	var s string
+
 	if len(os.Args) < 2 {
 		fmt.Println("Usage:")
 		fmt.Println("\tbrainfuck <path/to/file>.bf")
 		fmt.Println("\tbrainfuck --exec <bf logic>")
 	} else if len(os.Args) == 2 {
-		return OpenFile(os.Args[1])
+		s = OpenFile(os.Args[1])
 	} else if len(os.Args) == 3 {
-		return os.Args[2]
+		s = os.Args[2]
 	}
 
-	return ""
+	brainfuck.Log("RAW STRING - ", s)
+	return s
 }
 
 func OpenFile(path string) string {
+	brainfuck.Log("getting file")
 	f, err := ioutil.ReadFile(path)
-	if err != nil {
-		fmt.Println(err)
-	}
+	brainfuck.Check(err)
 
 	return string(f)
 }
