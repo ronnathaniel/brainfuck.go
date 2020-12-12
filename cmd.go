@@ -20,7 +20,6 @@ func main() {
 }
 
 func parseArgs() string {
-	brainfuck.Log("RAW ARGS - ", os.Args)
 	var s string
 
 	if len(os.Args) < 2 {
@@ -33,14 +32,13 @@ func parseArgs() string {
 		s = os.Args[2]
 	}
 
-	brainfuck.Log("RAW STRING - ", s)
 	return s
 }
 
 func OpenFile(path string) string {
-	brainfuck.Log("getting file")
 	f, err := ioutil.ReadFile(path)
-	brainfuck.Check(err)
-
+	if err != nil {
+		panic(err)
+	}
 	return string(f)
 }
