@@ -9,7 +9,23 @@ import (
 func Exec(inputRaw string) {
 
 	t := NewTape()
-	charToOp := map[string]func() error {
+	Log("THIS IS NEW EXEC")
+	for t.windup < uint32(len(inputRaw)) {
+		letter := string(inputRaw[t.windup])
+		op := getOp(t, letter)
+		t.do(op)
+	}
+
+	Log("THIS IS NEW")
+	fmt.Println(t.stdout)
+}
+
+func getOp(t *tape, s string) func() error {
+	if ! isValidToken(s) {
+		return t.noOp
+	}
+
+	var charToOp = map[string]func() error {
 		"+": t.increment,
 		"-": t.decrement,
 		">": t.shiftRight,
@@ -20,33 +36,22 @@ func Exec(inputRaw string) {
 		",": t.inputByte,
 	}
 
-	for t.windup < uint32(len(inputRaw))  {
-		letter := string(inputRaw[t.windup])
-
-		if ! isValidToken(letter) {
-			continue
-		}
-
-		op := charToOp[letter]
-		t.do(op)
-	}
-
-	fmt.Println(t.stdout)
-
+	return charToOp[s]
 }
 
 func isValidToken(s string) bool {
 	return strings.Contains("+-><,[].,", s)
 }
 
-func log(s ...interface{}) {
+func Log(s ...interface{}) {
 	if DEBUG {
 		fmt.Println("[BF DEBUG]", s)
 	}
 }
 
-func check(err error) {
+func Check(err error) {
 	if err != nil {
+		Log("ERROR - ", err)
 		panic(err)
 	}
 }
