@@ -36,7 +36,7 @@ func NewTape() *tape {
 
 func (t *tape) do(op func() error) {
 	err := op()
-	check(err)
+	Check(err)
 	t.advanceWindup()
 }
 
@@ -45,7 +45,7 @@ func (t *tape) shiftRight() error {
 		return fmt.Errorf("inaccessible cell @ i=%d - Shift Right failed", t.pointer + 1)
 	}
 
-	log("shifting right")
+	Log("shifting right")
 	t.plusplusPtr()
 	return nil
 }
@@ -55,7 +55,7 @@ func (t *tape) shiftLeft() error {
 		return fmt.Errorf("innacessible cell @ i=%d minus1 - Shift Left failed", t.pointer)
 	}
 
-	log("shifting left")
+	Log("shifting left")
 	t.minusminusPtr()
 	return nil
 }
@@ -65,7 +65,7 @@ func (t *tape) increment() error {
 		return fmt.Errorf("unable to increment cell @ i=%d, cell_v=%d", t.pointer, t.getCell())
 	}
 
-	log("incrementing")
+	Log("incrementing")
 	t.plusplusCell()
 	return nil
 }
@@ -75,7 +75,7 @@ func (t *tape) decrement() error {
 		return fmt.Errorf("unable to decrement cell @ i=%d, cell_v=%d", t.pointer, t.getCell())
 	}
 
-	log("decrementing")
+	Log("decrementing")
 	t.minusminusCell()
 	return nil
 }
@@ -86,14 +86,14 @@ func (t *tape) inputByte() error {
 }
 
 func (t *tape) outputByte() error {
-	log("outputting", t.getCell())
+	Log("outputting", t.getCell())
 	t.stdout += fmt.Sprintf("%c", t.getCell())
 	return nil
 }
 
 func (t *tape) openLoop() error {
 	t.loops = append(t.loops, t.windup)
-	log("loops:", t.loops)
+	Log("loops:", t.loops)
 	return nil
 }
 
@@ -105,7 +105,11 @@ func (t *tape) closeLoop() error {
 
 	t.windup = t.peakLoop()
 
-	log("moving windup back to cell @ index=", t.windup)
+	Log("moving windup back to cell @ index=", t.windup)
+	return nil
+}
+
+func (t *tape) noOp() error {
 	return nil
 }
 
