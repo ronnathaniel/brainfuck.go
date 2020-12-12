@@ -27,7 +27,6 @@ Build executable from source
 
     cd ~/go/src/github.com/ronnathaniel/brainfuck.go
     go build .
-    chmod +x brainfuck.go
     mv brainfuck.go /usr/local/bin/brainfuck
 
 ### Usage
