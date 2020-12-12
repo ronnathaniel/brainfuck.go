@@ -27,6 +27,7 @@ Build executable from source
 
     cd ~/go/src/github.com/ronnathaniel/brainfuck.go
     go build .
+    chmod +x brainfuck.go
     mv brainfuck.go /usr/local/bin/brainfuck
 
 ### Usage
@@ -62,7 +63,7 @@ Input is retrieved from stdin and Output pushed to stdout.
 
 Optionally pass in a string from the command line.
 
-    brainfuck --exec "++[>+<-]"
+    brainfuck -c "++[>+<-]"
     
 ### Configurations
 
@@ -80,7 +81,7 @@ The default tap size is set to 500. Override it with the `TAPE_SIZE_DEFAULT` fla
     ├── LICENSE
     ├── README.md
     ├── brainfuck/   - importable package
-    ├── cmd.go/      - handles command line
+    ├── cmd.go       - handles command line
     └── examples/    - example bf src
 
 
