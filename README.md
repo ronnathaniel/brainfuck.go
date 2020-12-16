@@ -1,6 +1,6 @@
 # brainfuck.go
 
-### Description
+## Description
 
 [BrainFuck](https://en.wikipedia.org/wiki/Brainfuck) interpreter written in [golang](https://github.com/golang/go).
 
@@ -17,7 +17,7 @@
 
 
 
-### Installation
+## Installation
 
 Pull this module
 
@@ -29,9 +29,29 @@ Build executable from source
     go build .
     mv brainfuck.go /usr/local/bin/brainfuck
 
-### Usage
+## Usage
 
 This compiler can be used both in-line code and in the command line. Simple integrations allow for Used-From-Anywhere.
+
+
+### CLI
+
+On the command line side, this interpreter can be stored as a quasi-executable, like `gcc`.
+
+
+Run `brainfuck`, pass in BF source files as args. Source files *should* end with extensions `.b` or `.bf` 
+
+    brainfuck hello.bf
+    
+interprets and optimizes `hello.bf` before computing the logic. 
+Input is retrieved from stdin and Output pushed to stdout.
+
+Optionally pass in a string from the command line.
+
+    brainfuck -c "++[>+<-]"
+    
+
+### Inline 
 
 Compiling within code is easy. The `Exec` function will parse, optimize, compile, and run any string of BrainFuck logic.
 
@@ -50,21 +70,7 @@ Open source files with a supplied `OpenFile` function. Pass it a relative string
     fuckRaw := brainfuck.OpenFile("<PATH/TO/SRC>.bf")
     brainfuck.Exec(fuckRaw)
 
-On the command line side, this interpreter can be stored as a quasi-executable, like `gcc`.
-
-
-Run `brainfuck`, pass in BF source files as args. Source files *should* end with extensions `.b` or `.bf` 
-
-    brainfuck hello.bf
-    
-interprets and optimizes `hello.bf` before computing the logic. 
-Input is retrieved from stdin and Output pushed to stdout.
-
-Optionally pass in a string from the command line.
-
-    brainfuck -c "++[>+<-]"
-    
-### Configurations
+## Configurations
 
 Enable debugging logs by setting the `DEBUG` flag.
 
