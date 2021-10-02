@@ -9,14 +9,12 @@ import (
 func Exec(inputRaw string) {
 
 	t := NewTape()
-	Log("THIS IS NEW EXEC")
 	for t.windup < uint32(len(inputRaw)) {
 		letter := string(inputRaw[t.windup])
 		op := getOp(t, letter)
 		t.do(op)
 	}
 
-	Log("THIS IS NEW")
 	fmt.Println(t.stdout)
 }
 
